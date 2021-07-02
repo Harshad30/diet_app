@@ -139,77 +139,71 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            top: height * 0.38,
-            left: 0,
-            right: 0,
-            child: Row(
+          Container(
+            margin: EdgeInsets.only(
+              top: height * 0.35,
+              right: 0,
+              left: 0,
+            ),
+            color: const Color(0xff192060),
+            height: height * 0.5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                Container(
-                  color: const Color(0xff192060),
-                  height: height * 0.5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 8,
-                          left: 32,
-                          right: 16,
-                        ),
-                        child: Text(
-                          "BreakFast",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                          child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 32,
-                            ),
-                            for (int i = 0; i < meals.length; i++)
-                              _MEalCard(
-                                meal: meals[i],
-                              )
-                          ],
-                        ),
-                      )),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      // Expanded(
-                      //   child: Container(
-                      //     margin: const EdgeInsets.only(
-                      //       bottom: 10,
-                      //       left: 32,
-                      //       right: 32,
-                      //     ),
-                      //     decoration: BoxDecoration(
-                      //         borderRadius:
-                      //             BorderRadiusDirectional.all(Radius.circular(30)),
-                      //         gradient: LinearGradient(
-                      //           begin: Alignment.topCenter,
-                      //           end: Alignment.bottomCenter,
-                      //           colors: [
-                      //             Colors.deepPurpleAccent,
-                      //             Colors.deepPurpleAccent.shade700,
-                      //           ],
-                      //         )),
-                      //   ),
-                      // ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8,
+                    left: 32,
+                    right: 16,
+                  ),
+                  child: Text(
+                    "BreakFast",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
-                
-
+                Expanded(
+                    child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 32,
+                      ),
+                      for (int i = 0; i < meals.length; i++)
+                        _MEalCard(
+                          meal: meals[i],
+                        )
+                    ],
+                  ),
+                )),
+                SizedBox(
+                  height: 30,
+                ),
+                // Expanded(
+                //   child: Container(
+                //     margin: const EdgeInsets.only(
+                //       bottom: 10,
+                //       left: 32,
+                //       right: 32,
+                //     ),
+                //     decoration: BoxDecoration(
+                //         borderRadius:
+                //             BorderRadiusDirectional.all(Radius.circular(30)),
+                //         gradient: LinearGradient(
+                //           begin: Alignment.topCenter,
+                //           end: Alignment.bottomCenter,
+                //           colors: [
+                //             Colors.deepPurpleAccent,
+                //             Colors.deepPurpleAccent.shade700,
+                //           ],
+                //         )),
+                //   ),
+                // ),
               ],
             ),
           )
