@@ -1,4 +1,3 @@
-import 'package:fitness_diet/diet.dart';
 import 'package:fitness_diet/ui/pages/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Demo',
       debugShowCheckedModeBanner: false,
-      home: Diet(),
+      home: ProfileScreen(),
     );
   }
 }
