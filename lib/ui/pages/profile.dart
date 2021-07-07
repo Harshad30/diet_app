@@ -1,4 +1,5 @@
 import 'package:fitness_diet/model/meal.dart';
+import 'package:fitness_diet/ui/pages/mealdetailscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 import 'package:intl/intl.dart';
@@ -245,15 +246,29 @@ class _ingredientProgress extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
-              height: 10,
-              width: width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  (Radius.circular(5)),
+            Stack(
+              children: [
+                Container(
+                  height: 10,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: Colors.white38,
+                    borderRadius: BorderRadius.all(
+                      (Radius.circular(5)),
+                    ),
+                  ),
                 ),
-              ),
+                Container(
+                  height: 10,
+                  width: width * progres,
+                  decoration: BoxDecoration(
+                    color: progressColor,
+                    borderRadius: BorderRadius.all(
+                      (Radius.circular(5)),
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               width: 10,
@@ -362,90 +377,98 @@ class _MEalCard extends StatelessWidget {
         right: 20,
         bottom: 10,
       ),
-      child: Material(
-        color: const Color(0xff192041),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        elevation: 4,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Flexible(
-              //images
-              fit: FlexFit.tight,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-                child: Image.asset(
-                  meal.imagePath,
-                  width: 190,
-                  fit: BoxFit.fill,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MealDetailScreen(meal: meal)));
+        },
+        child: Material(
+          color: const Color(0xff192041),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          elevation: 4,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Flexible(
+                //images
+                fit: FlexFit.tight,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  child: Image.asset(
+                    meal.imagePath,
+                    width: 190,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
-            ),
-            Flexible(
-              //All texts
-              fit: FlexFit.tight,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      meal.mealTime,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        fontSize: 18,
+              Flexible(
+                //All texts
+                fit: FlexFit.tight,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    Text(
-                      meal.name,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 22,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      "${meal.kiloCalories} kcal",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.access_time,
-                          size: 25,
-                          color: Colors.white70,
+                      Text(
+                        meal.mealTime,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          fontSize: 18,
                         ),
-                        SizedBox(
-                          width: 4,
+                      ),
+                      Text(
+                        meal.name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 22,
+                          color: Colors.white,
                         ),
-                        Text(
-                          "${meal.timeTaken} min",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                      ),
+                      Text(
+                        "${meal.kiloCalories} kcal",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            size: 25,
+                            color: Colors.white70,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                  ],
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            "${meal.timeTaken} min",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
