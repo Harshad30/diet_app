@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl_standalone.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class BreakFast extends StatelessWidget {
+  const BreakFast({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +53,12 @@ class ProfileScreen extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Positioned(
-            top: 0,
+            top: 10,
             height: height * 0.35,
             left: 0,
             right: 0,
             child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                  bottom: const Radius.circular(40)),
+              borderRadius: const BorderRadius.all(const Radius.circular(45)),
               child: Container(
                 color: const Color(0xff192041),
                 padding: const EdgeInsets.only(
@@ -158,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                     right: 16,
                   ),
                   child: Text(
-                    "BreakFas Options",
+                    "BreakFast Options",
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 25,
