@@ -11,11 +11,12 @@ class MealDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff192061),
+      resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             backgroundColor: const Color(0xFF192041),
-            expandedHeight: 300,
+            expandedHeight: 350,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(40))),
             flexibleSpace: FlexibleSpaceBar(
@@ -33,14 +34,14 @@ class MealDetailScreen extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 ListTile(
                   title: Text(
-                    meal.mealTime.toLowerCase(),
+                    meal.mealTime.toUpperCase(),
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
-                      fontSize: 25,
+                      fontSize: 29,
                       color: Colors.white,
                     ),
                   ),
@@ -48,7 +49,7 @@ class MealDetailScreen extends StatelessWidget {
                     meal.name,
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
-                      fontSize: 60,
+                      fontSize: 50,
                       color: Colors.white,
                     ),
                   ),
@@ -59,44 +60,89 @@ class MealDetailScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(
-                            width: 40,
+                            width: 30,
                           ),
                           Text(
                             "${meal.kiloCalories} Kcal",
                             style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 27,
-                            ),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 30),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 4,
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // Icon(
-                          //   Icons.access_time,
-                          //   color: Colors.white,
-                          // ),
-                          // SizedBox(
-                          //   width: 5,
-                          // ),
-                          // Text(
-                          //   "${meal.timeTaken} Mins",
-                          //   style: TextStyle(
-                          //     color: Colors.white,
-                          //     fontWeight: FontWeight.w600,
-                          //     fontSize: 27,
-                          //   ),
-                          // )
-                        ],
-                      )
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    "INGRIDENTS :-",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 29,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    for (int i = 0; i < meal.ingridents.length; i++)
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 4,
+                          left: 20,
+                        ),
+                        child: Text(
+                          meal.ingridents[i],
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      )
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                  ),
+                  child: Text(
+                    "PREPARATION :-",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 29,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      right: 16, bottom: 32, left: 20, top: 10),
+                  child: Text(
+                    meal.preparation,
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                )
               ],
             ),
           ),
