@@ -1,4 +1,6 @@
+import 'package:fitness_diet/model/breakfastmod.dart';
 import 'package:fitness_diet/model/meal.dart';
+import 'package:fitness_diet/ui/pages/mealdetailscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 import 'package:intl/intl.dart';
@@ -53,12 +55,12 @@ class BreakFast extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Positioned(
-            top: 10,
+            top: 0,
             height: height * 0.35,
             left: 0,
             right: 0,
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(const Radius.circular(45)),
+              borderRadius: const BorderRadius.all(Radius.circular(45)),
               child: Container(
                 color: const Color(0xff192041),
                 padding: const EdgeInsets.only(
@@ -79,14 +81,24 @@ class BreakFast extends StatelessWidget {
                           fontSize: 25,
                         ),
                       ),
-                      subtitle: Text(
-                        "Total Calories For BreakFast",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 30,
-                          color: const Color(0xFFE9E9E9),
+                      subtitle: Row(children: [
+                        Text(
+                          "Total Calories ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 30,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
+                        Text(
+                          " For BreakFast",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 30,
+                            color: const Color(0xFF40D876),
+                          ),
+                        ),
+                      ]),
                       // trailing:
                       //     ClipOval(child: Image.asset("assets/ppost.png")),
                     ),
@@ -156,13 +168,25 @@ class BreakFast extends StatelessWidget {
                     left: 32,
                     right: 16,
                   ),
-                  child: Text(
-                    "BreakFast Options",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "BreakFast ",
+                        style: const TextStyle(
+                          color: const Color(0xFF40D876),
+                          fontSize: 25,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        "Option ",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -178,7 +202,7 @@ class BreakFast extends StatelessWidget {
                       ),
                       for (int i = 0; i < meals.length; i++)
                         _MEalCard(
-                          meal: meals[i],
+                          bf: bfs[i],
                         )
                     ],
                   ),
@@ -244,15 +268,29 @@ class _ingredientProgress extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
-              height: 10,
-              width: width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  (Radius.circular(5)),
+            Stack(
+              children: [
+                Container(
+                  height: 10,
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: Colors.white38,
+                    borderRadius: BorderRadius.all(
+                      (Radius.circular(5)),
+                    ),
+                  ),
                 ),
-              ),
+                Container(
+                  height: 10,
+                  width: width * progres,
+                  decoration: BoxDecoration(
+                    color: progressColor,
+                    borderRadius: BorderRadius.all(
+                      (Radius.circular(5)),
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               width: 10,
@@ -350,10 +388,12 @@ class _RadialPainter extends CustomPainter {
 }
 
 class _MEalCard extends StatelessWidget {
-  const _MEalCard({Key? key, required this.meal}) : super(key: key);
+  const _MEalCard({
+    Key? key,
+    required this.bf,
+  }) : super(key: key);
 
-  final Meal meal;
-
+  final Bf bf;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -361,90 +401,90 @@ class _MEalCard extends StatelessWidget {
         right: 20,
         bottom: 10,
       ),
-      child: Material(
-        color: const Color(0xff192041),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        elevation: 4,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Flexible(
-              //images
-              fit: FlexFit.tight,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-                child: Image.asset(
-                  meal.imagePath,
-                  width: 190,
-                  fit: BoxFit.fill,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MealDetailScreen(bf: bf)));
+        },
+        child: Material(
+          color: const Color(0xff192041),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          elevation: 4,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Flexible(
+                //images
+                fit: FlexFit.tight,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  child: Image.asset(
+                    bf.imagePath,
+                    width: 190,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
-            ),
-            Flexible(
-              //All texts
-              fit: FlexFit.tight,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      meal.mealTime,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        fontSize: 18,
+              Flexible(
+                //All texts
+                fit: FlexFit.tight,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    Text(
-                      meal.name,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 22,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      "${meal.kiloCalories} kcal",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.access_time,
-                          size: 25,
-                          color: Colors.white70,
+                      Text(
+                        bf.name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 24,
+                          color: const Color(0xFF40D876),
                         ),
-                        SizedBox(
-                          width: 4,
+                      ),
+                      Text(
+                        "${bf.kiloCalories} kcal",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          fontSize: 18,
                         ),
-                        Text(
-                          "${meal.timeTaken} min",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            size: 25,
+                            color: Colors.white70,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                  ],
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            "${bf.timeTaken} min",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

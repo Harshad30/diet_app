@@ -1,15 +1,14 @@
 import 'dart:ui';
+import 'package:fitness_diet/model/lunchmod.dart';
 
-import 'package:fitness_diet/model/breakfastmod.dart';
-import 'package:fitness_diet/model/meal.dart';
 import 'package:fitness_diet/seg/lunch.dart';
 import 'package:flutter/material.dart';
 
-class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({Key? key, required this.bf,}) : super(key: key);
+class MealDetailScreen1 extends StatelessWidget {
+  const MealDetailScreen1({Key? key, required this.lh, }) : super(key: key);
 
-  final Bf bf;
-
+  
+  final Lh lh;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,7 @@ class MealDetailScreen extends StatelessWidget {
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(40)),
                 child: Image.asset(
-                  bf.imagePath,
+                  lh.imagePath,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -41,7 +40,7 @@ class MealDetailScreen extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                    bf.mealTime.toUpperCase(),
+                    lh.mealTime.toUpperCase(),
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 29,
@@ -49,7 +48,7 @@ class MealDetailScreen extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    bf.name,
+                    lh.name,
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 50,
@@ -66,7 +65,7 @@ class MealDetailScreen extends StatelessWidget {
                             width: 30,
                           ),
                           Text(
-                            "${bf.kiloCalories} Kcal",
+                            "${lh.kiloCalories} Kcal",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
@@ -101,14 +100,14 @@ class MealDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    for (int i = 0; i < bf.ingridents.length; i++)
+                    for (int i = 0; i < lh.ingridents.length; i++)
                       Padding(
                         padding: const EdgeInsets.only(
                           bottom: 4,
                           left: 20,
                         ),
                         child: Text(
-                          bf.ingridents[i],
+                          lh.ingridents[i],
                           style: TextStyle(
                             fontSize: 28,
                             color: Colors.white,
@@ -138,7 +137,7 @@ class MealDetailScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       right: 16, bottom: 32, left: 20, top: 10),
                   child: Text(
-                    bf.preparation,
+                    lh.preparation,
                     style: TextStyle(
                       fontSize: 28,
                       color: Colors.white,

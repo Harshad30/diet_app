@@ -1,3 +1,5 @@
+import 'package:fitness_diet/model/breakfastmod.dart';
+import 'package:fitness_diet/model/lunchmod.dart';
 import 'package:fitness_diet/model/meal.dart';
 import 'package:fitness_diet/ui/pages/mealdetailscreen.dart';
 import 'package:flutter/material.dart';
@@ -180,7 +182,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       for (int i = 0; i < meals.length; i++)
                         _MEalCard(
-                          meal: meals[i],
+                          bf: bfs[i],
                         )
                     ],
                   ),
@@ -366,9 +368,12 @@ class _RadialPainter extends CustomPainter {
 }
 
 class _MEalCard extends StatelessWidget {
-  const _MEalCard({Key? key, required this.meal}) : super(key: key);
+  const _MEalCard({
+    Key? key,
+    required this.bf,
+  }) : super(key: key);
 
-  final Meal meal;
+  final Bf bf;
 
   @override
   Widget build(BuildContext context) {
@@ -382,7 +387,7 @@ class _MEalCard extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => MealDetailScreen(meal: meal)));
+                  builder: (context) => MealDetailScreen(bf: bf)));
         },
         child: Material(
           color: const Color(0xff192041),
@@ -400,7 +405,7 @@ class _MEalCard extends StatelessWidget {
                     Radius.circular(20),
                   ),
                   child: Image.asset(
-                    meal.imagePath,
+                    bf.imagePath,
                     width: 190,
                     fit: BoxFit.fill,
                   ),
@@ -419,7 +424,7 @@ class _MEalCard extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        meal.mealTime,
+                        bf.mealTime,
                         style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
@@ -427,7 +432,7 @@ class _MEalCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        meal.name,
+                        bf.name,
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 22,
@@ -435,7 +440,7 @@ class _MEalCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "${meal.kiloCalories} kcal",
+                        "${bf.kiloCalories} kcal",
                         style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
@@ -453,7 +458,7 @@ class _MEalCard extends StatelessWidget {
                             width: 4,
                           ),
                           Text(
-                            "${meal.timeTaken} min",
+                            "${bf.timeTaken} min",
                             style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w500,

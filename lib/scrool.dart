@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:ui';
 
 import 'package:fitness_diet/seg/breakfast.dart';
 import 'package:fitness_diet/seg/dinner.dart';
@@ -39,7 +40,6 @@ class _Scrool extends State<Scrool> with SingleTickerProviderStateMixin {
             SliverAppBar(
               backgroundColor: const Color(0xff192060),
               foregroundColor: const Color(0xFFE9E9E9),
-              title: Text('Tab Controller Example'),
               pinned: true,
               floating: true,
               forceElevated: boxIsScrolled,
